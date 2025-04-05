@@ -1,0 +1,17 @@
+---
+  - name: create users and groups in managed nodes
+    hosts: all
+    tasks:
+      - name: create group
+        group:
+          name: devops
+          state: present
+  
+      - name: create user and add it in group
+        user:
+          name: adham_abdein
+          group: devops
+          shell: /bin/bash
+          password: "{{ '1234' | password_hash('sha512')}}"
+          state: present
+  
